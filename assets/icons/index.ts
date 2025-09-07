@@ -1,6 +1,8 @@
 import home from './home.png';
+import logo from './logo.png';
 import profile from './profile.png';
 import save from './save.png';
 import search from './search.png';
 
-export const icons = {home, profile, save, search}
+
+export const icons = {home, profile, save, search,logo}
