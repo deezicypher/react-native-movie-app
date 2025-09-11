@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const url = "http://192.168.126.239:3000/api/movies/";
+const url = "http://192.168.64.239:3000/api/movies/";
 
 export const fetchMovies = async ({query}:{query:string}) => {
     try {

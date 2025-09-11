@@ -11,21 +11,7 @@ export default function Index() {
   const router = useRouter()
   const {data:movies, loading:moviesLoading,error:moviesError} = useFetch(()=>fetchMovies({query:''}))
 
-  if (moviesLoading) {
-    return (
-      <View className="flex-1 bg-primary justify-center items-center">
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
 
-  if (moviesError) {
-    return (
-      <View className="flex-1 bg-primary justify-center items-center">
-        <Text className="text-white">Error: {moviesError.message}</Text>
-      </View>
-    );
-  }
   
   return (
     <View className="flex-1 bg-primary">
@@ -33,8 +19,13 @@ export default function Index() {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{minHeight:'100%',paddingBottom:10}} className="flex-1 px-5">
           <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
         
-<View className="flex-1 mt-5">
-            <SearchBar onPress={() => router.push('/search')} placeholder="Search for a movie" />
+          { moviesLoading ? ( 
+            <ActivityIndicator size="large" color="0000ff" className="mt-10 self-center" /> 
+            ) : moviesError ? 
+            ( <Text className="text-red-500 px-4 my-3">Error: {moviesError.message}</Text> ) 
+            : 
+            <View className="flex-1 mt-5">
+            <SearchBar onPress={() => router.push('/search')} placeholder="Search for a movie"  />
               <>
               <Text className="text-lg text-white font-bold mt-5 mb-3">Latest Movies</Text>
               </>
@@ -57,7 +48,7 @@ export default function Index() {
                   scrollEnabled={false}
                   />
           </View>
-
+}
 
           
         </ScrollView>
