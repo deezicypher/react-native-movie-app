@@ -1,15 +1,28 @@
 import axios from 'axios';
+const instance = axios.create({
+    baseURL: process.env.EXPO_PUBLIC_API_URL!,
+    withCredentials: true, 
+});
 
 
-const url = "http://192.168.64.239:3000/api/movies/";
+
+  
 
 export const fetchMovies = async ({query}:{query:string}) => {
     try {
-        const fullUrl = query? `${url}?searchId=${query}` : url
-        const response = await axios.get(fullUrl);
+        const fullUrl = query? `?searchId=${query}` : ''
+        const response = await instance.get(fullUrl);
         return response.data;
     } catch (error) {
         console.error('Error fetching movies', error)
         throw error
     }
+}
+
+export const updateSearchCount = async (query:string,movie:Movie) => {
+        try {
+             await instance.post('update-search-count', {query,...movie})
+        } catch (error) {
+            console.log(error)
+        }
 }
