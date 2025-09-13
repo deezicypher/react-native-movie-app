@@ -26,3 +26,14 @@ export const updateSearchCount = async (query:string,movie:Movie) => {
             console.log(error)
         }
 }
+
+export const getTrendingMovies = async () => {
+    try {
+        const response = await instance.get('get-trending-movies')
+  
+        return response.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}

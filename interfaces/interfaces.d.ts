@@ -27,3 +27,12 @@ interface MovieDetails {
     adult:boolean;
     backdrop_path: string | null;
 }
+
+interface TrendingCardProps {
+    movie: {
+        movie_id:number;
+        title:string;
+        poster_url:string;
+    };
+    index:number;
+}

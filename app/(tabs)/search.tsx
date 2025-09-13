@@ -17,14 +17,17 @@ const Search = () => {
     const timeoutId = setTimeout(async () => {
     if(searchQuery.trim()){
       await loadMovies()
-      if(movies?.length > 0 && movies?.[0]){
-        await updateSearchCount(searchQuery,movies[0])
-      }
+   
     }else{
       reset()
     }
   },500);
 
+  useEffect(() => {
+    if(movies?.length > 0 && movies?.[0]){
+       updateSearchCount(searchQuery,movies[0])
+    }
+  },[movies])
   return () => clearTimeout(timeoutId)
   },[searchQuery])
 
@@ -55,6 +58,8 @@ const Search = () => {
             value={searchQuery}
             onChangeText={(text:string) => setSearchQuery(text)}
             />
+
+           
           </View>
 
           {loading && (
