@@ -1,6 +1,6 @@
 import { Link } from 'expo-router'
 import React from 'react'
-import { Image, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 
 const TrendingCard = ({movie:{movie_id,title,poster_url},index}:TrendingCardProps) => {
   return (
@@ -13,6 +13,9 @@ const TrendingCard = ({movie:{movie_id,title,poster_url},index}:TrendingCardProp
               <View className='absolute bottom-9 -left-3.5 px-2 py-1 rounded-full'>
                 
               </View>
+              <Text className="text-sm text-white font-bold mt-2" numberOfLines={2}>
+                      {title}
+              </Text>
 
         </TouchableOpacity>
     </Link>
