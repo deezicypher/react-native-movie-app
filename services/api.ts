@@ -37,3 +37,14 @@ export const getTrendingMovies = async () => {
         throw error
     }
 }
+
+export const fetchMovieDetails = async (id:string) => {
+   
+    try {   
+        const response = await instance.get(`${id}`)
+        return response.data
+    } catch (error) {
+        console.error(error)
+        throw error;
+    }
+}
